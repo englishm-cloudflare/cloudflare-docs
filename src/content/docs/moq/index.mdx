@@ -1,5 +1,7 @@
+[SEAL:0a25229cadc264850ebdad05bb0426ce:BEGIN source="sandbox_exec"]
 ---
 title: Media over QUIC at Cloudflare
+description: Deliver low-latency live media content using the MoQ protocol over QUIC transport on Cloudflare's network.
 pcx_content_type: overview
 sidebar:
   order: 1
@@ -7,10 +9,33 @@ sidebar:
 head:
   - tag: title
     content: Overview
+products:
+  - moq
 ---
 
 MoQ (Media over QUIC) is a protocol for delivering live media content using QUIC transport. It provides efficient, low-latency media streaming by leveraging QUIC's multiplexing and connection management capabilities.
 
 MoQ is designed to be an Internet infrastructure level service that provides media delivery to applications, similar to how HTTP provides content delivery and WebRTC provides real-time communication.
 
+Cloudflare's implementation of MoQ currently supports a subset of the [draft-14](https://datatracker.ietf.org/doc/html/draft-ietf-moq-transport-14) and [draft-16](https://datatracker.ietf.org/doc/html/draft-ietf-moq-transport-16) MoQ Transport specifications, both deployed on the edge.
+
 For the most up-to-date documentation on the protocol, please visit the IETF working group documentation.
+
+## Authentication
+
+Authentication behavior differs between the two supported drafts.
+
+**Draft-14**: Authentication is optional. Each session operates within an isolated private scope, so unauthenticated connections are accepted but confined to their own namespace.
+
+**Draft-16**: Authentication is required for draft-16 connections. Clients must present a valid token. Tokens use a custom JWT format.
+
+The roadmap includes support for [PrivacyPass](https://datatracker.ietf.org/doc/draft-ietf-moq-privacy-pass-auth/) and [C4M (Common Access Tokens for MoQ)](https://datatracker.ietf.org/doc/draft-ietf-moq-c4m/) as those standards mature. Support for third-party issuers and customer-provided signing keys is also planned.
+
+## Frequently Asked Questions
+
+* What about Safari?
+
+  Safari does not yet have fully functional WebTransport support. Apple never publicly commits to timelines for new features like this. However, Apple has indicated their [intent to support WebTransport](https://github.com/WebKit/standards-positions/issues/18#issuecomment-1495890122). An Apple employee is even a co-author of the [WebTransport over HTTP/3](https://datatracker.ietf.org/doc/draft-ietf-webtrans-http3/) draft. Since Safari 18.4 (2025-03-31), an early (not yet fully functional) implementation of the WebTransport API has been available for testing behind a developer-mode / advanced settings feature flag (including on iOS).
+
+  Until Safari has a fully functional WebTransport implementation, some MoQ use cases may require a fallback to WebRTC, or, in some cases, WebSockets.
+[SEAL:0a25229cadc264850ebdad05bb0426ce:END]
