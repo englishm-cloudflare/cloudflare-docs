@@ -1,0 +1,19 @@
+src/content/docs/moq/about/index.mdx
+  s_efe73199470472::t_17da369cdeab7a 3,10-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e1f96037a8d9391a4516a890beab2b5053b22f23",
+  "prompts": {},
+  "sessions": {
+    "s_efe73199470472": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_049eeaff1ffeR6C5isuvIZYFwh",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Mike English <menglish@cloudflare.com>"
+    }
+  }
+}
